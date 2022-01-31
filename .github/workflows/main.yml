@@ -3,16 +3,43 @@ on: push
 
 jobs:
   eslint:
+    name: runner / eslint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: eslint-github-pr-check
+        uses: ./
         with:
-          node-version: 16
-      - run: npm ci # or yarn install
-      - uses: sibiraj-s/action-eslint@v2
+          tool_name: eslint-github-pr-check
+          reporter: github-pr-check
+          level: info
+          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+      - name: eslint-github-check
+        uses: ./
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Optional
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
+          tool_name: eslint-github-check
+          reporter: github-check
+          level: warning
+          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+      - name: eslint-github-pr-review
+        uses: ./
+        with:
+          tool_name: eslint-github-pr-review
+          reporter: github-pr-review
+          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+      - name: eslint-subproject-github-pr-review
+        uses: ./
+        with:
+          tool_name: eslint-subproject-github-pr-review
+          reporter: github-pr-review
+          workdir: ./test-subproject
+          eslint_flags: 'sub-testdata/'
+      - name: eslint-subproject
+        uses: ./
+        with:
+          tool_name: eslint-subproject
+          workdir: ./test-subproject
+          eslint_flags: 'sub-testdata/'
+          reporter: github-check
+          level: warning
+          filter_mode: file
