@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 14
       - run: npm install
-      - run: npm install eslint @microsoft/eslint-formatter-sarif -g
+      - run: npm install eslint @microsoft/eslint-formatter-sarif --save
 
       - run: eslint web-data -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true
       - name: Upload SARIF file
