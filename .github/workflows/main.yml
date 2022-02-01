@@ -1,5 +1,6 @@
 name: CI
-on: push
+on:
+  workflow_dispatch:
 jobs:
   node_test:
     runs-on: ubuntu-latest
