@@ -13,4 +13,5 @@ jobs:
       - run: npm install
       - run: npm install eslint --save-dev
       - run: npm install @microsoft/eslint-formatter-sarif --save-dev
+      - run: npm init @eslint/config
       - run: eslint -f @microsoft/eslint-formatter-sarif -o yourfile.sarif yourfile.js
