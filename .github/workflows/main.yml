@@ -10,9 +10,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: npm install
-      - run: npm install eslint --save-dev
-      - run: npm install @microsoft/eslint-formatter-sarif --save-dev
+      - run: npm install -g
+      - run: npm install eslint -g
+      - run: npm install @microsoft/eslint-formatter-sarif -g
       - run: npm init @eslint/config
       - run: eslint web-data/ --ext .js,.jsx,.ts,.tsx -f @microsoft/eslint-formatter-sarif -o results.sarif
       - name: Upload SARIF file
