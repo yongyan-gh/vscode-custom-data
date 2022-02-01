@@ -10,6 +10,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
+      - name: Install NPM
+        uses: ng-easy/npm-setup@v1.7.2
       - name: Cache node modules
         uses: actions/cache@v1
         with:
