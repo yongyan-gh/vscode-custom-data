@@ -3,6 +3,7 @@
     "eslint": "^8.6.0"
   },
   "dependencies": {
+    "eslint": "^8.8.0",
     "chai": "^4.3.4",
     "jschardet": "^3.0.0",
     "lodash": "^4.17.21",
