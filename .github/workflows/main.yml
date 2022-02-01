@@ -12,10 +12,9 @@ jobs:
         with:
           node-version: 14
       - run: npm install
-      - run: npm install eslint -g
-      - run: npm install @microsoft/eslint-formatter-sarif -g
-      - run: npm init @eslint/config
-      - run: node_modules/.bin/eslint web-data -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true
+      - run: npm install eslint @microsoft/eslint-formatter-sarif -g
+
+      - run: eslint web-data -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1
         with:
