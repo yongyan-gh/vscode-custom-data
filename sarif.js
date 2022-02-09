@@ -175,6 +175,9 @@ module.exports = function (results, data) {
                                     sarifRules[message.ruleId].shortDescription = {
                                         text: meta.docs.description
                                     };
+                                    sarifRules[message.ruleId].help = {
+                                        text: meta.docs.description
+                                    };
                                 }
                             }
                         }
