@@ -50,8 +50,7 @@ function getResultLevel(message) {
  * @returns {string} formatted string
  * @private
  */
-function formatRuleText(text)
-{
+function formatRuleText(text) {
     if (text) {
         text = text[0].toUpperCase() + text.slice(1);
         text = text.slice(-1) == "." ? text : text + ".";
@@ -148,9 +147,11 @@ module.exports = function (results, data) {
                     console.log(err);
                 }
             }
-            if (result.messages.length > 0) {
 
-                result.messages.forEach(message => {
+            const messages = result.suppressedMessages ? result.messages.concat(result.suppressedMessages) : result.messages;
+
+            if (messages.length > 0) {
+                messages.forEach(message => {
 
                     const sarifRepresentation = {
                         level: getResultLevel(message),
@@ -228,8 +229,8 @@ module.exports = function (results, data) {
                         if (message.column > 0) {
                             sarifRepresentation.locations[0].physicalLocation.region.startColumn = message.column;
                         }
-                        if (message.endline > 0) {
-                            sarifRepresentation.locations[0].physicalLocation.region.endLine = message.endline;
+                        if (message.endLine > 0) {
+                            sarifRepresentation.locations[0].physicalLocation.region.endLine = message.endLine;
                         }
                         if (message.endColumn > 0) {
                             sarifRepresentation.locations[0].physicalLocation.region.endColumn = message.endColumn;
@@ -243,6 +244,17 @@ module.exports = function (results, data) {
                         sarifRepresentation.locations[0].physicalLocation.region.snippet = {
                             text: message.source
                         };
+                    }
+
+                    if (message.suppressions) {
+                        sarifRepresentation.suppressions = message.suppressions.map(suppression => {
+                            return {
+                                kind: suppression.kind === "directive" ? "inSource" : "external",
+                                justification: suppression.justification
+                            }
+                        });
+                    } else {
+                        sarifRepresentation.suppressions = [];
                     }
 
                     if (message.ruleId) {
