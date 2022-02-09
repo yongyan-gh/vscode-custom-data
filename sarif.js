@@ -208,7 +208,13 @@ module.exports = function (results, data) {
                         }
                         if (message.column > 0) {
                             sarifRepresentation.locations[0].physicalLocation.region.startColumn = message.column;
-                        };
+                        }
+                        if (message.endline > 0) {
+                            sarifRepresentation.locations[0].physicalLocation.region.endLine = message.endline;
+                        }
+                        if (message.endColumn > 0) {
+                            sarifRepresentation.locations[0].physicalLocation.region.endColumn = message.endColumn;
+                        }
                     }
 
                     if (message.source) {
