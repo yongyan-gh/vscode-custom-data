@@ -191,10 +191,13 @@ module.exports = function (results, data) {
                                 };
                                 if (meta.docs.description) {
                                     sarifRules[message.ruleId].shortDescription = {
-                                        text: formatRuleText(meta.docs.description)
+                                        text: "shortDescription: " + formatRuleText(meta.docs.description)
+                                    };
+                                    sarifRules[message.ruleId].fullDescription = {
+                                        text: "fullDescription: " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].help = {
-                                        text: formatRuleText(meta.docs.description)
+                                        text: "help: " + formatRuleText(meta.docs.description)
                                     };
                                 }
                             }
