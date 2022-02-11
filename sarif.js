@@ -191,16 +191,16 @@ module.exports = function (results, data) {
                                 };
                                 if (meta.docs.description) {
                                     sarifRules[message.ruleId].shortDescription = {
-                                        text: "[shortDescription](https://google.com): " + formatRuleText(meta.docs.description),
-                                        markdown: "[shortDescription](https://google.com): " + formatRuleText(meta.docs.description)
+                                        text: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description),
+                                        markdown: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].fullDescription = {
-                                        text: "[fullDescription](https://google.com): " + formatRuleText(meta.docs.description),
-                                        markdown: "[fullDescription](https://google.com): " + formatRuleText(meta.docs.description)
+                                        text: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description),
+                                        markdown: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].help = {
-                                        text: "[help](https://google.com): " + formatRuleText(meta.docs.description),
-                                        markdown: "[help](https://google.com): " + formatRuleText(meta.docs.description)
+                                        text: "[help](https://github.com): " + formatRuleText(meta.docs.description),
+                                        markdown: "[help](https://github.com): " + formatRuleText(meta.docs.description)
                                     };
                                 }
                             }
