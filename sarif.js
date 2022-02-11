@@ -191,13 +191,13 @@ module.exports = function (results, data) {
                                 };
                                 if (meta.docs.description) {
                                     sarifRules[message.ruleId].shortDescription = {
-                                        text: "shortDescription: " + formatRuleText(meta.docs.description)
+                                        text: "[shortDescription](https://google.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].fullDescription = {
-                                        text: "fullDescription: " + formatRuleText(meta.docs.description)
+                                        text: "[fullDescription](https://google.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].help = {
-                                        text: "help: " + formatRuleText(meta.docs.description)
+                                        text: "[help](https://google.com): " + formatRuleText(meta.docs.description)
                                     };
                                 }
                             }
