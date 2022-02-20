@@ -190,10 +190,6 @@ module.exports = function (results, data) {
                                     }
                                 };
                                 if (meta.docs.description) {
-                                    sarifRules[message.ruleId].shortDescription = {
-                                        text: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description),
-                                        markdown: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description)
-                                    };
                                     sarifRules[message.ruleId].fullDescription = {
                                         text: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description),
                                         markdown: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description)
