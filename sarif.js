@@ -195,8 +195,8 @@ module.exports = function (results, data) {
                                         markdown: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].fullDescription = {
-                                        text: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description),
-                                        markdown: "[fullDescription](https://github.com): " + formatRuleText(meta.docs.description)
+                                        text: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description),
+                                        markdown: "[shortDescription](https://github.com): " + formatRuleText(meta.docs.description)
                                     };
                                     sarifRules[message.ruleId].help = {
                                         text: "[help](https://github.com): " + formatRuleText(meta.docs.description),
