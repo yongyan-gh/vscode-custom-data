@@ -200,7 +200,6 @@ module.exports = function (results, data) {
                                     };
                                     sarifRules[message.ruleId].help = {
                                         text: "[help](https://github.com) text: " + formatRuleText(meta.docs.description),
-                                        markdown: "[help](https://github.com) md: " + formatRuleText(meta.docs.description)
                                     };
                                 }
                             }
