@@ -157,7 +157,7 @@ module.exports = function (results, data) {
                     const sarifRepresentation = {
                         level: getResultLevel(message),
                         message: {
-                            text: message.message
+                            text: "[message](https://github.com)" + message.message
                         },
                         locations: [
                             {
