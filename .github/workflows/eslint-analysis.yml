@@ -20,6 +20,8 @@ jobs:
           npm i @microsoft/eslint-formatter-sarif
           
       - name: Run ESLint
+        env:
+          SARIF_ESLINT_EMBED: true
         run: npx eslint .
              --config .eslintrc.js
              --ext .js,.jsx,.ts,.tsx
