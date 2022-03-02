@@ -133,7 +133,8 @@ module.exports = function (results, data) {
                 }
             }
 
-            const messages = result.suppressedMessages ? result.messages.concat(result.suppressedMessages) : result.messages;
+            const containsSuppressedMessages = result.suppressedMessages && result.suppressedMessages.length > 0 ? true : false;
+            const messages = containsSuppressedMessages ? result.messages.concat(result.suppressedMessages) : result.messages;
 
             if (messages.length > 0) {
                 messages.forEach(message => {
@@ -184,6 +185,18 @@ module.exports = function (results, data) {
                         if (sarifRuleIndices[message.ruleId] !== "undefined") {
                             sarifRepresentation.ruleIndex = sarifRuleIndices[message.ruleId];
                         }
+
+                        if (containsSuppressedMessages) {
+                            sarifRepresentation.suppressions = message.suppressions ?
+                                [] :
+                                message.suppressions.map(
+                                    suppression => {
+                                        return {
+                                            kind: suppression.kind === "directive" ? "inSource" : "external",
+                                            justification: suppression.justification
+                                        }
+                                    });
+                        }
                     } else {
                         // ESLint produces a message with no ruleId when it encounters an internal
                         // error. SARIF represents this as a tool execution notification rather
@@ -220,23 +233,11 @@ module.exports = function (results, data) {
                     }
 
                     if (message.source) {
-
                         // Create an empty region if we don't already have one from the line / column block above.
                         sarifRepresentation.locations[0].physicalLocation.region = sarifRepresentation.locations[0].physicalLocation.region || {};
                         sarifRepresentation.locations[0].physicalLocation.region.snippet = {
                             text: message.source
                         };
-                    }
-
-                    if (message.suppressions) {
-                        sarifRepresentation.suppressions = message.suppressions.map(suppression => {
-                            return {
-                                kind: suppression.kind === "directive" ? "inSource" : "external",
-                                justification: suppression.justification
-                            }
-                        });
-                    } else {
-                        sarifRepresentation.suppressions = [];
                     }
 
                     if (message.ruleId) {
