@@ -14,7 +14,8 @@ jobs:
       - run: npm install
       - run: npm install eslint @microsoft/eslint-formatter-sarif --save
 
-      - run: node_modules/.bin/eslint web-data -f ./sariftest.js -o results.sarif || true
+      - run: node_modules/.bin/eslint . --config .eslintrc.js --ext .js,.jsx,.ts,.tsx -f ./sariftest.js -o results.sarif
+        continue-on-error: true
       
       - name: Upload eslint results as artifact
         uses: actions/upload-artifact@v2
