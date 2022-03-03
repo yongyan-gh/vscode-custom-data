@@ -43,4 +43,4 @@ jobs:
         continue-on-error: true
         
       - name: Validate sarif file
-        run: npx @microsoft/sarif-multitool validate eslint-results.sarif
+        run: npx @microsoft/sarif-multitool validate eslint.sarif
