@@ -18,6 +18,7 @@ jobs:
         run: |
           npm i eslint
           npm i @microsoft/eslint-formatter-sarif
+          npm i @microsoft/sarif-multitool
           
       - name: Run ESLint
         env:
@@ -39,4 +40,7 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: eslint.sarif
-
+        continue-on-error: true
+        
+      - name: Validate sarif file
+        run: npx @microsoft/sarif-multitool validate eslint-results.sarif
